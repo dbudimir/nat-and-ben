@@ -1,4 +1,15 @@
-// Export all components from this file for cleaner imports
-// Example:
-// export { Button } from "./Button";
-// export { Card } from "./Card";
+export { default as AlternatingSection } from './AlternatingSection';
+export { default as EventCard } from './EventCard';
+export { default as EventsSection } from './EventsSection';
+export { default as FAQSection } from './FAQSection';
+export { default as LodgingSection } from './LodgingSection';
+export { default as MaskedEdge } from './MaskedEdge';
+export { default as PlaceholderImage } from './PlaceholderImage';
+export { default as RegistrySection } from './RegistrySection';
+export { default as RSVPSection } from './RSVPSection';
+export { default as ScrollReveal } from './ScrollReveal';
+export { default as SectionHeader } from './SectionHeader';
+export { default as StampCarousel } from './StampCarousel';
+export { default as Sticker } from './Sticker';
+export { default as StickyNav } from './StickyNav';
+export { default as TravelSection } from './TravelSection';

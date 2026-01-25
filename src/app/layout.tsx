@@ -11,7 +11,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://example.com'), // Replace with your domain
+  metadataBase: new URL('https://natandben.me'),
   title: {
     default: 'Nat and Ben',
     template: 'Nat and Ben | %s',
@@ -32,22 +32,23 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://example.com',
+    url: 'https://natandben.me',
     siteName: 'Nat and Ben',
-    title: 'Nat and Ben - Tagline',
-    description: 'Your project description here.',
+    title: "Nat and Ben - We're getting married!",
+    description:
+      "Nat and Ben are getting married on August 22, 2026 in Portland, Maine. We can't wait to see you there!",
     images: [
       {
-        url: '/og-image.png',
+        url: '/nat-and-ben-thumbnail.webp',
         width: 1200,
         height: 630,
-        alt: 'Nat and Ben',
-        type: 'image/png',
+        alt: 'Nat and Ben - Portland, ME - August 22, 2026',
+        type: 'image/webp',
       },
     ],
   },
   alternates: {
-    canonical: 'https://example.com',
+    canonical: 'https://natandben.me',
   },
   icons: {
     icon: [{ url: '/favicon.ico', type: 'image/x-icon' }],

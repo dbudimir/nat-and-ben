@@ -1,53 +1,32 @@
 'use client';
 
-import { Over_the_Rainbow, Roboto_Mono } from 'next/font/google';
-import localFont from 'next/font/local';
+import EventsSection from '@/components/EventsSection';
+import FAQSection from '@/components/FAQSection';
+import LodgingSection from '@/components/LodgingSection';
+import RSVPSection from '@/components/RSVPSection';
+import RegistrySection from '@/components/RegistrySection';
+import ScrollReveal from '@/components/ScrollReveal';
+import StampCarousel from '@/components/StampCarousel';
+import StickyNav from '@/components/StickyNav';
+import TravelSection from '@/components/TravelSection';
+import { COLORS, MAX_WIDTH, SECTION_GAP } from '@/lib/constants';
+import { bimboFont, boldoaMatFont, overTheRainbowFont, robotoMono } from '@/lib/fonts';
+import { useRef } from 'react';
 import styled from 'styled-components';
 
-const robotoMono = Roboto_Mono({
-  weight: '300',
-  subsets: ['latin'],
-  display: 'swap',
-});
+const STAMP_IMAGES = Array.from({ length: 12 }, (_, i) => `/stamps/nat-and-ben-stamp-${i + 1}.webp`);
 
-const overTheRainbowFont = Over_the_Rainbow({
-  weight: '400',
-  subsets: ['latin'],
-  display: 'swap',
-});
+const PageWrapper = styled.div`
+  background-color: ${COLORS.offWhite};
+`;
 
-const bimboFont = localFont({
-  src: [
-    {
-      path: '../../public/fonts/Bimbo.ttf',
-      weight: '400',
-      style: 'normal',
-    },
-    {
-      path: '../../public/fonts/Bimbo Ballpoint.ttf',
-      weight: '400',
-      style: 'normal',
-    },
-  ],
-  variable: '--font-bimbo',
-  display: 'swap',
-});
-
-const boldoaMatFont = localFont({
-  src: '../../public/fonts/Boldoa Mat.ttf',
-  weight: '400',
-  style: 'normal',
-  variable: '--font-boldoa-mat',
-  display: 'swap',
-});
-
-const Main = styled.main`
+const HeroSection = styled.section`
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 100vh;
+  height: 80vh;
+  max-height: 800px;
   padding: 1rem;
-  background-color: #f5f5f0;
 `;
 
 const PostcardContainer = styled.div`
@@ -78,7 +57,7 @@ const PostcardContainer = styled.div`
 
 const Content = styled.div`
   text-align: center;
-  color: #0d216a;
+  color: ${COLORS.navy};
   padding: 5rem 0;
   border-radius: 8px;
   display: flex;
@@ -98,10 +77,10 @@ const Content = styled.div`
 
 const BimboText = styled.p`
   font-size: 1.4rem;
-  color: #0d216a;
+  color: ${COLORS.navy};
   font-weight: 800;
   line-height: 2;
-  padding: 0 1rem;
+  padding: 0 0.8rem;
 
   @media (min-width: 540px) {
     padding: 0 2.7rem;
@@ -119,28 +98,31 @@ const BimboText = styled.p`
 
 const Names = styled.h1`
   font-size: 3rem;
-  font-weight: 700;
+  font-weight: 400;
   letter-spacing: 0.05em;
   color: transparent;
-  -webkit-text-stroke: 1px #0d216a;
-  text-stroke: 1px #0d216a;
+  -webkit-text-stroke: 1px ${COLORS.navy};
+  text-stroke: 1px ${COLORS.navy};
   paint-order: stroke fill;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   line-height: 0.85;
   display: block;
   margin-bottom: -1rem;
+  opacity: 0.8;
 
   @media (min-width: 540px) {
     font-size: 5rem;
-    -webkit-text-stroke: 1.5px #0d216a;
-    text-stroke: 1.5px #0d216a;
+    -webkit-text-stroke: 1.5px ${COLORS.navy};
+    text-stroke: 1.5px ${COLORS.navy};
   }
 `;
 
 const DateNumbers = styled.span`
   font-size: 1rem;
   font-weight: 300;
-  -webkit-text-stroke: 2px #c8cd73;
-  text-stroke: 1px #c8cd73;
+  -webkit-text-stroke: 2px ${COLORS.sage};
+  text-stroke: 1px ${COLORS.sage};
   paint-order: stroke fill;
 
   @media (min-width: 540px) {
@@ -158,7 +140,7 @@ const LocationStamp = styled.div`
   letter-spacing: 0em;
   line-height: 1.4;
   text-align: center;
-  color: #0d216a;
+  color: ${COLORS.navy};
   transform: rotate(-5deg);
 
   @media (min-width: 540px) {
@@ -180,25 +162,95 @@ const Stamps = styled.img`
   }
 `;
 
+const BikeImage = styled.img`
+  width: 100px;
+  height: auto;
+  display: block;
+  margin: 4rem auto 0 auto;
+`;
+
+const SiteContainer = styled.main`
+  max-width: ${MAX_WIDTH}px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: ${SECTION_GAP}px;
+  padding-bottom: ${SECTION_GAP}px;
+`;
+
 export default function Home() {
+  const heroRef = useRef<HTMLElement>(null);
+
   return (
-    <Main>
-      <PostcardContainer>
-        <LocationStamp className={robotoMono.className}>
-          PORTLAND, ME
-          <br />
-          22 AUG 2026
-        </LocationStamp>
-        <Stamps src="/stamps.webp" alt="Postage stamps" />
-        <Content>
-          <BimboText className={bimboFont.className}>save the date</BimboText>
-          <Names className={boldoaMatFont.className}>NAT AND BEN</Names>
-          <BimboText className={bimboFont.className}>
-            are getting married on AUGUST <DateNumbers className={overTheRainbowFont.className}>22, 2026 </DateNumbers>
-            in portland, maine and we can't wait to see you there.
-          </BimboText>
-        </Content>
-      </PostcardContainer>
-    </Main>
+    <PageWrapper>
+      <HeroSection ref={heroRef}>
+        <PostcardContainer>
+          <LocationStamp className={robotoMono.className}>
+            PORTLAND, ME
+            <br />
+            22 AUG 2026
+          </LocationStamp>
+          <Stamps src="/stamps.webp" alt="Postage stamps" />
+          <Content>
+            <BimboText aria-hidden>&nbsp;</BimboText>
+            <Names className={boldoaMatFont.className}>NAT AND BEN</Names>
+            <BimboText className={bimboFont.className}>
+              are getting married on AUGUST{' '}
+              <DateNumbers className={overTheRainbowFont.className}>22, 2026 </DateNumbers>
+              in portland, maine and we can&apos;t wait to see you there.
+            </BimboText>
+          </Content>
+        </PostcardContainer>
+      </HeroSection>
+
+      <StickyNav heroRef={heroRef} />
+
+      <SiteContainer>
+        <StampCarousel
+          images={STAMP_IMAGES}
+          direction="left"
+          rotation={-2}
+          imagePadding={10}
+          marginTop={20}
+          marginBottom={20}
+        />
+
+        <ScrollReveal>
+          <EventsSection />
+        </ScrollReveal>
+
+        <ScrollReveal>
+          <TravelSection />
+        </ScrollReveal>
+
+        <ScrollReveal>
+          <LodgingSection />
+        </ScrollReveal>
+
+        <ScrollReveal>
+          <RegistrySection />
+        </ScrollReveal>
+
+        <ScrollReveal>
+          <RSVPSection />
+        </ScrollReveal>
+
+        <StampCarousel
+          images={STAMP_IMAGES}
+          direction="right"
+          rotation={3}
+          imagePadding={10}
+          marginTop={20}
+          marginBottom={20}
+        />
+
+        <ScrollReveal>
+          <FAQSection />
+        </ScrollReveal>
+
+        <BikeImage src="/nat-and-ben-bike.webp" alt="Nat and Ben on a bike" />
+      </SiteContainer>
+    </PageWrapper>
   );
 }

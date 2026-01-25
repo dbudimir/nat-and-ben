@@ -13,7 +13,7 @@ $colors: (
   secondary: #64748b,
   background: #ffffff,
   surface: #f8fafc,
-  text: #1e293b,
+  text: #0d216a,
   text-muted: #64748b,
   border: #e2e8f0,
   error: #ef4444,
@@ -151,6 +151,8 @@ body {
   line-height: 1.6;
   color: color(text);
   background-color: color(background);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 // Typography defaults
