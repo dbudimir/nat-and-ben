@@ -1,0 +1,11 @@
+echo "🔍 Running pre-push checks..."
+
+# Run linting
+echo "📝 Checking ESLint rules..."
+pnpm run lint:check
+
+# Run type checking
+echo "🔧 Running TypeScript type check..."
+pnpm run type-check
+
+echo "✅ All pre-push checks passed!"

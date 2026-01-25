@@ -1,0 +1,11 @@
+node_modules
+.next
+.git
+.husky
+public
+*.log
+*.lock
+pnpm-lock.yaml
+.env*
+dist
+build
