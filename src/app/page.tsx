@@ -19,12 +19,12 @@ const overTheRainbowFont = Over_the_Rainbow({
 const bimboFont = localFont({
   src: [
     {
-      path: '../../public/fonts/Bimbo Trial.ttf',
+      path: '../../public/fonts/Bimbo.ttf',
       weight: '400',
       style: 'normal',
     },
     {
-      path: '../../public/fonts/Bimbo Ballpoint Trial.ttf',
+      path: '../../public/fonts/Bimbo Ballpoint.ttf',
       weight: '400',
       style: 'normal',
     },
@@ -97,7 +97,7 @@ const Content = styled.div`
 `;
 
 const BimboText = styled.p`
-  font-size: 1.25rem;
+  font-size: 1.4rem;
   color: #0d216a;
   font-weight: 800;
   line-height: 2;
@@ -122,8 +122,8 @@ const Names = styled.h1`
   font-weight: 700;
   letter-spacing: 0.05em;
   color: transparent;
-  -webkit-text-stroke: 1.5px #0d216a;
-  text-stroke: 1.5px #0d216a;
+  -webkit-text-stroke: 1px #0d216a;
+  text-stroke: 1px #0d216a;
   paint-order: stroke fill;
   line-height: 0.85;
   display: block;
@@ -131,6 +131,8 @@ const Names = styled.h1`
 
   @media (min-width: 540px) {
     font-size: 5rem;
+    -webkit-text-stroke: 1.5px #0d216a;
+    text-stroke: 1.5px #0d216a;
   }
 `;
 
