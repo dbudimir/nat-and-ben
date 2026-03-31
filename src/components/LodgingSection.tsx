@@ -253,7 +253,7 @@ const LodgingSection = () => {
         </div>
       }
       imageContent={
-        <ImageStage $mobileHeight="60vw" $desktopHeight="500px">
+        <ImageStage $mobileHeight="60vw" $desktopHeight="420px">
           <MaskedEdge
             style={{
               position: 'absolute',

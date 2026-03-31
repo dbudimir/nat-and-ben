@@ -11,7 +11,7 @@ import StickyNav from '@/components/StickyNav';
 import TravelSection from '@/components/TravelSection';
 import { COLORS, MAX_WIDTH, SECTION_GAP } from '@/lib/constants';
 import { bimboFont, boldoaMatFont, overTheRainbowFont, robotoMono } from '@/lib/fonts';
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import styled from 'styled-components';
 
 const STAMP_IMAGES = Array.from({ length: 12 }, (_, i) => `/stamps/nat-and-ben-stamp-${i + 1}.webp`);
@@ -182,6 +182,13 @@ const SiteContainer = styled.main`
 export default function Home() {
   const heroRef = useRef<HTMLElement>(null);
 
+  useEffect(() => {
+    STAMP_IMAGES.forEach(src => {
+      const img = new window.Image();
+      img.src = src;
+    });
+  }, []);
+
   return (
     <PageWrapper>
       <HeroSection ref={heroRef}>
@@ -214,6 +221,7 @@ export default function Home() {
           imagePadding={10}
           marginTop={20}
           marginBottom={20}
+          priority
         />
 
         <ScrollReveal>

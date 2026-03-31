@@ -25,6 +25,8 @@ type StampCarouselProps = {
   marginTop?: number;
   /** Bottom margin in px */
   marginBottom?: number;
+  /** Mark first N images as high-priority (adds preload hints + eager fetch) */
+  priority?: boolean;
 };
 
 function seededRandom(seed: number) {
@@ -77,10 +79,9 @@ const Outer = styled.div<{
 const Track = styled.div<{
   $direction: 'left' | 'right';
   $speed: number;
-  $gap: number;
 }>`
   display: flex;
-  gap: ${p => p.$gap}px;
+  width: -webkit-max-content;
   width: max-content;
   ${p =>
     p.$direction === 'left'
@@ -96,10 +97,12 @@ const ImageWrapper = styled.div<{
   $maxHeight: number;
   $padding: number;
   $imageRotation: number;
+  $gap: number;
 }>`
   flex-shrink: 0;
   height: ${p => p.$maxHeight}px;
   padding: ${p => p.$padding}px;
+  margin-right: ${p => p.$gap}px;
   transform: rotate(${p => p.$imageRotation}deg);
 
   img {
@@ -122,6 +125,7 @@ const StampCarousel = ({
   imageRotation = 0,
   marginTop = 0,
   marginBottom = 0,
+  priority = false,
 }: StampCarouselProps) => {
   const outerRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
@@ -243,27 +247,34 @@ const StampCarousel = ({
       onPointerUp={handlePointerUp}
       onPointerCancel={handlePointerUp}
     >
-      <Track ref={trackRef} $direction={direction} $speed={speed} $gap={gap}>
-        {doubled.map(({ src, id }) => (
-          <ImageWrapper
-            key={id}
-            $maxHeight={maxHeight}
-            $padding={imagePadding}
-            $imageRotation={imageRotation}
-            style={imageStyle}
-          >
-            <Image
-              src={src}
-              alt=""
-              width={0}
-              height={maxHeight}
-              sizes={`${maxHeight * 1.5}px`}
-              style={{ width: 'auto', height: '100%' }}
-              draggable={false}
-              unoptimized
-            />
-          </ImageWrapper>
-        ))}
+      <Track ref={trackRef} $direction={direction} $speed={speed}>
+        {doubled.map(({ src, id }) => {
+          const idx = parseInt(id.split('-')[1]);
+          const isPriority = priority && id.startsWith('a-') && idx < 6;
+
+          return (
+            <ImageWrapper
+              key={id}
+              $maxHeight={maxHeight}
+              $padding={imagePadding}
+              $imageRotation={imageRotation}
+              $gap={gap}
+              style={imageStyle}
+            >
+              <Image
+                src={src}
+                alt=""
+                width={Math.round(maxHeight * 1.5)}
+                height={maxHeight}
+                sizes={`${maxHeight * 1.5}px`}
+                style={{ width: 'auto', height: '100%' }}
+                draggable={false}
+                unoptimized
+                {...(isPriority ? { priority: true } : { loading: 'eager' as const })}
+              />
+            </ImageWrapper>
+          );
+        })}
       </Track>
     </Outer>
   );
