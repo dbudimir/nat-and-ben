@@ -226,9 +226,9 @@ const LodgingSection = () => {
     <AlternatingSection
       id="lodging"
       imagePosition="left"
+      headerContent={<SectionHeader title="Lodging" />}
       textContent={
         <div className={robotoMono.className}>
-          <SectionHeader title="Lodging" />
           <TextContent>
             <Intro>
               There are many beautiful Airbnb&apos;s and hotels in the Portland area. If you would prefer to stay in a
@@ -253,7 +253,7 @@ const LodgingSection = () => {
         </div>
       }
       imageContent={
-        <ImageStage $mobileHeight="250px" $desktopHeight="500px">
+        <ImageStage $mobileHeight="60vw" $desktopHeight="500px">
           <MaskedEdge
             style={{
               position: 'absolute',

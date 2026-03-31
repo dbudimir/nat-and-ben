@@ -15,6 +15,7 @@ const Wrapper = styled.section`
 const FAQList = styled.ul`
   list-style: none;
   padding: 0;
+  margin: 1.5rem auto;
 `;
 
 const FAQItem = styled.li`
@@ -22,7 +23,7 @@ const FAQItem = styled.li`
 `;
 
 const Question = styled.button`
-  font-size: 1.25rem;
+  font-size: 1rem;
   border: 1px solid rgba(13, 33, 106, 0.2);
   background: none;
   padding: 1rem 1.25rem;
@@ -222,6 +223,10 @@ const FAQ_DATA = [
   {
     question: 'What if I have more questions?',
     answer: <p>Please text or email us! We would love to hear from you.</p>,
+  },
+  {
+    question: 'Should I bring a wig?',
+    answer: <p>Yes.</p>,
   },
 ];
 

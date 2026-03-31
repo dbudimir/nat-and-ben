@@ -65,9 +65,9 @@ const TravelSection = () => {
     <AlternatingSection
       id="travel"
       imagePosition="right"
+      headerContent={<SectionHeader title="Travel" />}
       textContent={
         <div className={robotoMono.className}>
-          <SectionHeader title="Travel" />
           <TextContent>
             <SubHeading>Air Travel</SubHeading>
             Fly into PWM, where rental cars and Ubers are options to get into Portland.

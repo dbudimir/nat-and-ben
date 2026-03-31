@@ -68,7 +68,7 @@ const Details = styled.div`
   font-size: 0.8rem;
   color: ${COLORS.navy};
   line-height: 1.7;
-  opacity: 0.8;
+  /* opacity: 0.8; */
 `;
 
 type EventCardProps = {

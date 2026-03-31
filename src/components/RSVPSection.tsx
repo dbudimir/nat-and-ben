@@ -59,7 +59,7 @@ const RSVPSection = () => {
         We can&apos;t wait to celebrate with you! Please let us know if you can make it by clicking the button below.
       </Description>
       <CTAButton
-        href="https://www.zola.com/wedding/natalieandbenjaminaugust22"
+        href="https://www.zola.com/wedding/natalieandbenjaminaugust22/rsvp"
         target="_blank"
         rel="noopener noreferrer"
         className={robotoMono.className}

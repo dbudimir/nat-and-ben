@@ -66,9 +66,9 @@ const RegistrySection = () => {
     <AlternatingSection
       id="registry"
       imagePosition="right"
+      headerContent={<SectionHeader title="Registry" />}
       textContent={
         <div className={robotoMono.className}>
-          <SectionHeader title="Registry" />
           <TextContent>
             <p>
               Your presence is more than enough &mdash; plus Ben and I likely forgot to get you a wedding gift, so

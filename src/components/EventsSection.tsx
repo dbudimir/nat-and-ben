@@ -49,8 +49,13 @@ const AfterPartySticker = styled(Sticker)`
 
   @media (max-width: ${BREAKPOINTS.mobile}px) {
     top: 10px;
-    rotate: -4deg;
+    rotate: -5deg;
     width: 80%;
+    margin-top: 1rem;
+
+    &.desktop-after-party-sticker {
+      display: none;
+    }
   }
 
   @media (min-width: ${BREAKPOINTS.mobile}px) {
@@ -59,6 +64,10 @@ const AfterPartySticker = styled(Sticker)`
     right: -5rem;
     z-index: 3;
     margin-top: 0;
+
+    &.mobile-after-party-sticker {
+      display: none;
+    }
   }
 `;
 
@@ -87,10 +96,26 @@ const AfterPartySticker = styled(Sticker)`
 // 	}
 // `;
 
+const AfterPartyStickerContent = ({ className }: { className?: string }) => (
+  <AfterPartySticker rotation={4} className={`${robotoMono.className} ${className ?? ''}`}>
+    <strong>After Party!</strong>
+    <br />
+    Bubbas Sulky Lounge
+    <br />
+    WIG THEMED <br />{' '}
+    <p style={{ margin: 0, fontSize: '0.7rem' }} className={robotoMono.className}>
+      {' '}
+      (BRING YOUR OWN WIG)
+    </p>
+    10pm-1am
+  </AfterPartySticker>
+);
+
 const EventsSection = () => {
   return (
     <section id="events">
       <SectionHeader title="Events" />
+      <br />
       <Grid>
         <MaskedEdge>
           <EventCard
@@ -134,22 +159,12 @@ const EventsSection = () => {
                   <br />
                   <br />
                   Please arrive by 4pm
+                  <AfterPartyStickerContent className="mobile-after-party-sticker" />
                 </>
               }
             />
           </MaskedEdge>
-          <AfterPartySticker rotation={4} className={robotoMono.className}>
-            <strong>After Party!</strong>
-            <br />
-            Bubbas Sulky Lounge
-            <br />
-            WIG THEMED <br />{' '}
-            <p style={{ margin: 0, fontSize: '0.7rem' }} className={robotoMono.className}>
-              {' '}
-              (BRING YOUR OWN WIG)
-            </p>
-            10pm-1am
-          </AfterPartySticker>
+          <AfterPartyStickerContent className="desktop-after-party-sticker" />
         </SaturdayCardWrapper>
       </Grid>
 
