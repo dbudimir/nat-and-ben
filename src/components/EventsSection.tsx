@@ -138,7 +138,7 @@ const EventsSection = () => {
               <>
                 Boone&apos;s Fish House and Oyster Room
                 <br />
-                5:30-7:30 Rehearsal Dinner (by invitation)
+                5:30-7:30 Rehearsal Dinner
                 <br />
                 7:30-9:30 Welcome Drinks
               </>
@@ -159,6 +159,8 @@ const EventsSection = () => {
                   <br />
                   <br />
                   Please arrive by 4pm
+                  <br />
+                  ceremony at 4:30pm
                   <AfterPartyStickerContent className="mobile-after-party-sticker" />
                 </>
               }
